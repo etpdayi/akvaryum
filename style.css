@@ -1,0 +1,1200 @@
+/*
+ * Akvaryum - FishVille Nostaljik Sanat Tasarımı & Canlı Yayın Arayüzü
+ * Berrak turkuaz sular, sıcak kumlar, parlak neşeli butonlar ve Kick entegrasyonu.
+ */
+
+:root {
+    --bg-dark: #07223b;
+    --bg-surface: rgba(14, 49, 79, 0.88);
+    --bg-surface-elevated: rgba(18, 64, 102, 0.95);
+    --border-soft: rgba(255, 255, 255, 0.22);
+    --border-glow: rgba(83, 252, 24, 0.45);
+    --kick-green: #53FC18;
+    --kick-green-dark: #299e04;
+    --kick-green-glow: rgba(83, 252, 24, 0.5);
+    --aqua-blue: #00b4d8;
+    --aqua-light: #48cae4;
+    --gold: #ffb703;
+    --gold-dark: #d48b00;
+    --coral-red: #ff4d6d;
+    --text-primary: #ffffff;
+    --text-secondary: #b8d5ea;
+    --text-muted: #7aa1c0;
+    --sand-warm: #dfc488;
+    --glass-blur: blur(14px);
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 1. Üst Menü ve Başlık */
+.app-header {
+    height: 64px;
+    background: linear-gradient(180deg, #0d385c 0%, #082640 100%);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-title {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.brand-title .logo-fish {
+    font-size: 26px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    background: linear-gradient(180deg, #1fa3c9 0%, #0e7291 100%);
+    border-color: #48cae4;
+    color: #ffffff;
+    box-shadow: 0 3px 0 #084c61, 0 0 12px rgba(72, 202, 228, 0.4);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Kick Giriş Butonu & Profil Rozeti */
+.kick-auth-btn {
+    background: var(--kick-green);
+    color: #000;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 0 var(--kick-green-dark);
+    transition: all 0.15s;
+}
+
+.kick-auth-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 var(--kick-green-dark), 0 0 12px var(--kick-green);
+}
+
+.kick-auth-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 var(--kick-green-dark);
+}
+
+.kick-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--kick-green);
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.kick-avatar-small {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--kick-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    color: #000;
+}
+
+.kick-user-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--kick-green);
+}
+
+.gold-badge {
+    background: linear-gradient(180deg, #ffd166 0%, #ffb703 100%);
+    border: 1px solid #ffe699;
+    color: #4a2c00;
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 0 var(--gold-dark);
+    transition: transform 0.2s;
+}
+
+.gold-badge.bounce {
+    animation: coinBounce 0.4s ease;
+}
+
+@keyframes coinBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+.shop-btn-nav {
+    background: linear-gradient(180deg, #ff70a6 0%, #e0316e 100%) !important;
+    border-color: #ff9ebb !important;
+    color: #fff !important;
+    box-shadow: 0 3px 0 #9c1444 !important;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.15s;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+/* Görünüm Konteynerleri */
+.view-container {
+    display: none;
+    min-height: calc(100vh - 64px);
+    position: relative;
+}
+
+.view-container.active {
+    display: flex;
+}
+
+/* 2. FISHVILLE KİŞİSEL AKVARYUM */
+#view-pet {
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 64px);
+}
+
+.aquarium-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #14596b;
+}
+
+#aquariumCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+}
+
+/* FishVille Tarzı Akvaryum Temizleme Süngeri / Eldiven İkonu */
+#glassCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 5;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 32 32"><rect x="4" y="8" width="24" height="16" rx="4" fill="%23f9ca24" stroke="%23f0932b" stroke-width="2"/><circle cx="9" cy="13" r="2" fill="%23f0932b"/><circle cx="16" cy="18" r="2.5" fill="%23f0932b"/><circle cx="22" cy="12" r="1.5" fill="%23f0932b"/></svg>') 18 18, grab;
+}
+
+#glassCanvas:active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 32 32"><rect x="2" y="10" width="28" height="13" rx="3" fill="%23f6e58d" stroke="%23f0932b" stroke-width="2.5"/><circle cx="16" cy="16" r="3" fill="%23f0932b"/></svg>') 18 18, grabbing;
+}
+
+/* HUD Panelleri - FishVille Tarzı Yumuşak Mavi Kartlar */
+.pet-hud-top {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.hud-panel {
+    background: rgba(13, 50, 79, 0.88);
+    backdrop-filter: var(--glass-blur);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+    padding: 12px 18px;
+    pointer-events: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.fish-info-hud {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.fish-avatar-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #092c46;
+    border: 3px solid #48cae4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.fish-avatar-circle img {
+    max-width: 85%;
+    max-height: 85%;
+}
+
+.fish-title-group h3 {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.fish-title-group p {
+    font-size: 12px;
+    color: var(--kick-green);
+    font-weight: 600;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 16px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 135px;
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--text-secondary);
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.3s ease;
+}
+
+.fill-oxygen {
+    background: linear-gradient(90deg, #ff4d6d, #ffd166, #06d6a0, #48cae4);
+}
+
+.fill-algae {
+    background: linear-gradient(90deg, #06d6a0, #ffd166, #ff4d6d);
+}
+
+.fill-growth {
+    background: linear-gradient(90deg, #53FC18, #ffd700);
+}
+
+/* FishVille Alt Etkileşim Butonları */
+.pet-hud-bottom {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 20;
+}
+
+.action-card-btn {
+    background: linear-gradient(180deg, #1b537d 0%, #0d3654 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 135px;
+    box-shadow: 0 4px 0 #072236, 0 8px 16px rgba(0, 0, 0, 0.35);
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.action-card-btn:hover {
+    transform: translateY(-2px);
+    border-color: #48cae4;
+    box-shadow: 0 6px 0 #072236, 0 10px 20px rgba(72, 202, 228, 0.25);
+}
+
+.action-card-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #072236;
+}
+
+.btn-icon-large {
+    font-size: 24px;
+}
+
+.btn-sub-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* Ana Yem Butonu (FishVille Tarzı) */
+.feed-btn-special {
+    background: linear-gradient(180deg, #2b6b99 0%, #17486e 100%);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.feed-btn-special.ready {
+    background: linear-gradient(180deg, #6efc3b 0%, #44d411 100%);
+    color: #000;
+    border-color: #9aff78;
+    box-shadow: 0 5px 0 #288c07, 0 0 25px rgba(83, 252, 24, 0.6);
+    animation: pulseReady 1.6s infinite;
+}
+
+.feed-btn-special.ready .btn-sub-label {
+    color: #000;
+    font-weight: 800;
+}
+
+@keyframes pulseReady {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Okyanusa Sal Butonu */
+.release-ocean-btn {
+    background: linear-gradient(180deg, #ffd166 0%, #f77f00 100%);
+    color: #000;
+    border: 2px solid #fff;
+    font-size: 15px;
+    font-weight: 900;
+    padding: 12px 24px;
+    border-radius: 16px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 0 #b35600, 0 0 25px rgba(255, 209, 102, 0.8);
+    animation: pulseReady 1.5s infinite;
+}
+
+.release-ocean-btn.show {
+    display: flex;
+}
+
+/* Cam Temizleme Bilgi Rozeti */
+.clean-tip-badge {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 36, 58, 0.9);
+    border: 2px solid #53fc18;
+    color: #fff;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. BALIK ÇİZİM ATÖLYESİ */
+#view-draw {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    background: radial-gradient(circle at center, #114670 0%, #061d33 100%);
+}
+
+.draw-card {
+    background: var(--bg-surface);
+    border: 2px solid var(--border-soft);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.draw-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.draw-header h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.draw-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.draw-content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.canvas-wrapper {
+    position: relative;
+    background: #092c48;
+    border-radius: 16px;
+    border: 3px dashed rgba(72, 202, 228, 0.4);
+    overflow: hidden;
+    width: 540px;
+    height: 360px;
+    cursor: crosshair;
+}
+
+#drawCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.canvas-guide-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    pointer-events: none;
+    opacity: 0.14;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><path d="M90 30 Q60 5 30 20 L5 5 Q15 30 5 55 L30 40 Q60 55 90 30 Z" fill="none" stroke="white" stroke-width="2" stroke-dasharray="4 4"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.draw-sidebar {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.panel-section {
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tool-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.tool-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.15s;
+    text-align: center;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+}
+
+.tool-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.tool-btn.active {
+    background: var(--kick-green);
+    color: #000;
+    border-color: #8aff66;
+    box-shadow: 0 2px 0 var(--kick-green-dark);
+}
+
+.color-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.15);
+}
+
+.color-swatch.active {
+    border-color: #fff;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.color-picker-wrapper {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#customColorPicker {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.brush-slider {
+    width: 100%;
+    accent-color: var(--kick-green);
+}
+
+.preview-box {
+    background: #082640;
+    border: 1px solid rgba(72, 202, 228, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95px;
+    overflow: hidden;
+}
+
+#previewCanvas {
+    width: 180px;
+    height: 90px;
+}
+
+.text-input {
+    background: rgba(5, 26, 44, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.text-input:focus {
+    border-color: var(--kick-green);
+    box-shadow: 0 0 8px var(--kick-green-glow);
+}
+
+.primary-btn {
+    background: linear-gradient(180deg, #6efc3b 0%, #44d411 100%);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 0 var(--kick-green-dark), 0 8px 20px rgba(83, 252, 24, 0.35);
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--kick-green-dark), 0 10px 25px rgba(83, 252, 24, 0.5);
+}
+
+.primary-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--kick-green-dark);
+}
+
+/* 4. TOPLULUK AKVARYUMLARI (GUEST VIEW) */
+#view-community {
+    padding: 30px 40px;
+    background: radial-gradient(circle at center, #114670 0%, #061d33 100%);
+    overflow-y: auto;
+}
+
+.community-view-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.community-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 14px;
+}
+
+.community-header h2 {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.community-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 3px;
+}
+
+.aquarium-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.aquarium-card {
+    background: var(--bg-surface);
+    border: 2px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.aquarium-card:hover {
+    transform: translateY(-3px);
+    border-color: #48cae4;
+    box-shadow: 0 10px 24px rgba(72, 202, 228, 0.25);
+}
+
+.card-fish-preview {
+    height: 115px;
+    background: #082640;
+    border-radius: 12px;
+    border: 1px solid rgba(72, 202, 228, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-fish-preview img {
+    max-height: 80%;
+    max-width: 80%;
+    object-fit: contain;
+}
+
+.card-owner-info h4 {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.card-owner-info p {
+    font-size: 12px;
+    color: var(--kick-green);
+    font-weight: 700;
+}
+
+.card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mini-badge {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.card-visit-btn {
+    width: 100%;
+    margin-top: 4px;
+}
+
+/* Ziyaretçi Banner */
+.guest-banner {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 42, 69, 0.96);
+    border: 2px solid #48cae4;
+    box-shadow: 0 0 20px rgba(72, 202, 228, 0.5);
+    border-radius: 30px;
+    padding: 8px 24px;
+    z-index: 40;
+}
+
+.guest-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* 5. ORTAK OKYANUS */
+#view-ocean {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+}
+
+#oceanCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.ocean-overlay-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 50;
+}
+
+.ocean-stats-panel {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(10, 40, 66, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    padding: 12px 18px;
+    z-index: 50;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.ocean-stat-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.ocean-stat-num {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--kick-green);
+}
+
+.ocean-stat-txt {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+body.obs-mode .app-header,
+body.obs-mode .ocean-overlay-controls,
+body.obs-mode .ocean-stats-panel {
+    display: none !important;
+}
+
+body.obs-mode #view-ocean {
+    height: 100vh;
+}
+
+/* 6. MODALLAR (KICK LOGIN, SHOP, CELEBRATION) */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(4, 18, 31, 0.82);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.modal-backdrop.active {
+    display: flex;
+}
+
+/* Kick Giriş Modalı */
+.kick-modal-card {
+    background: linear-gradient(180deg, #0f3d63 0%, #082742 100%);
+    border: 3px solid var(--kick-green);
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 440px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 0 40px rgba(83, 252, 24, 0.35);
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.kick-modal-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.kick-logo-badge {
+    background: var(--kick-green);
+    color: #000;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 4px 14px;
+    border-radius: 8px;
+    box-shadow: 0 3px 0 var(--kick-green-dark);
+}
+
+.kick-modal-header h3 {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.kick-modal-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Dükkan Modalı */
+.shop-card {
+    background: linear-gradient(180deg, #11426a 0%, #092842 100%);
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 50px rgba(255, 183, 3, 0.4);
+    border-radius: 24px;
+    padding: 24px;
+    max-width: 740px;
+    width: 92%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.shop-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 12px;
+}
+
+.shop-title-area h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.shop-title-area p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.shop-nav-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.shop-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    padding: 4px 0;
+}
+
+.shop-item-card {
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.shop-item-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.shop-item-card.equipped {
+    border-color: var(--kick-green);
+    background: rgba(83, 252, 24, 0.1);
+}
+
+.item-icon-box {
+    height: 65px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.item-name {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.item-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    min-height: 26px;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.item-price {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.btn-buy-equip {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+}
+
+.btn-buy {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 2px 0 var(--gold-dark);
+}
+
+.btn-equip {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+
+.btn-equipped {
+    background: var(--kick-green);
+    color: #000;
+    cursor: default;
+}
+
+/* Kutlama Modalı */
+.celebration-card {
+    background: linear-gradient(180deg, #11426a 0%, #092842 100%);
+    border: 3px solid var(--kick-green);
+    box-shadow: 0 0 50px rgba(83, 252, 24, 0.5);
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    0% { transform: scale(0.75); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.celebration-badge {
+    font-size: 48px;
+}
+
+.celebration-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--kick-green);
+}
+
+.celebration-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-header {
+        padding: 0 12px;
+    }
+    .brand-title {
+        font-size: 18px;
+    }
+    .tab-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    .canvas-wrapper {
+        width: 100%;
+        height: 280px;
+    }
+    .stats-grid {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .pet-hud-bottom {
+        width: 95%;
+        justify-content: center;
+    }
+    .action-card-btn {
+        min-width: 90px;
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+}
